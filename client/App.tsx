@@ -5,7 +5,7 @@ import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import HomeScreen from "./src/screens/home";
-import CreateListScreen from "./src/screens/list-create";
+import CreateListScreen from "./src/screens/create-list";
 import { Screens } from "./src/screens";
 
 const Stack = createStackNavigator();
