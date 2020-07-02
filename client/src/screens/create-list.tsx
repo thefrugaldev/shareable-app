@@ -1,8 +1,9 @@
 import React from "react";
 import { Text, View, FlatList, StyleSheet } from "react-native";
 
-import ListItemComponent from "../components/list-item";
-import ListHeaderComponent from "../components/list-header";
+import ListItemModel from "../components/list-item";
+import ListHeader from "../components/list-header";
+import { useNavigationState } from "@react-navigation/native";
 
 const CreateListScreen = () => {
   const staticList = [
@@ -38,14 +39,18 @@ const CreateListScreen = () => {
     },
   ];
 
+  const nav = useNavigationState((state) => {
+    console.log(state);
+  });
+
   return (
     <FlatList
       data={staticList}
-      renderItem={({ item }) => <ListItemComponent item={item} />}
+      renderItem={({ item }) => <ListItemModel item={item} />}
       keyExtractor={(item) => item.id}
       contentContainerStyle={styles.listContainer}
       style={styles.list}
-      ListHeaderComponent={ListHeaderComponent}
+      ListHeaderComponent={ListHeader}
     >
       <Text>This is part of a list</Text>
     </FlatList>

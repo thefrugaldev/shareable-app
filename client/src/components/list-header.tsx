@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-const ListHeaderComponent = () => {
+const ListHeader = () => {
   return (
     <View style={styles.headerContainer}>
       <Text style={styles.headerText}>Item</Text>
@@ -10,7 +10,7 @@ const ListHeaderComponent = () => {
   );
 };
 
-export default ListHeaderComponent;
+export default ListHeader;
 
 const styles = StyleSheet.create({
   headerContainer: {

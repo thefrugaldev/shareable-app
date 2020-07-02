@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-import ListItem from "../models/ListItem";
+import ListItemModel from "../models/ListItem";
 import MinusSquareSvg from "../../assets/svg/minus-square";
 import PlusSquareSvg from "../../assets/svg/plus-square";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-interface ListItemComponentProps {
-  item: ListItem;
+interface ListItemProps {
+  item: ListItemModel;
 }
 
-const ListItemComponent: React.FC<ListItemComponentProps> = ({ item }) => {
+const ListItem: React.FC<ListItemProps> = ({ item }) => {
   const [quantity, setQuantity] = useState(item.quantity);
 
   const incrementQuantity = () => {
@@ -39,7 +39,7 @@ const ListItemComponent: React.FC<ListItemComponentProps> = ({ item }) => {
   );
 };
 
-export default ListItemComponent;
+export default ListItem;
 
 const styles = StyleSheet.create({
   listItemContainer: {
