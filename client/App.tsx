@@ -1,92 +1,25 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ImageSourcePropType,
-  TouchableOpacity,
-} from "react-native";
-import banner from "./assets/home-screen-banner.png";
+import "react-native-gesture-handler";
+import { NavigationContainer, StackActions } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import HomeScreen from "./src/screens/home";
+import CreateListScreen from "./src/screens/list-create";
+import { Screens } from "./src/screens";
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Share Notes and Lists</Text>
-      <Text style={styles.subtext}>No login required!</Text>
-      <Image source={banner as ImageSourcePropType} />
-      <TouchableOpacity
-        onPress={() => alert("Hello, world!")}
-        style={styles.button}
-      >
-        <Text style={styles.buttonText}>Create a list</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => alert("Hello, world!")}
-        style={styles.button}
-      >
-        <Text style={styles.buttonText}>Add notes</Text>
-      </TouchableOpacity>
-      <Text style={styles.disclaimerText}>
-        Select one of the buttons above and start creating and sharing!
-      </Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name={`${Screens.Home}`} component={HomeScreen} />
+        <Stack.Screen
+          name={`${Screens.CreateList}`}
+          component={CreateListScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#60c6ad",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  header: {
-    color: "#FCFCFC",
-    fontSize: 36,
-    lineHeight: 44,
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    shadowOffset: {
-      height: 2,
-      width: 4,
-    },
-    shadowColor: "black",
-    shadowRadius: 1,
-    shadowOpacity: 0.25,
-  },
-  subtext: {
-    color: "#ff473a",
-    fontSize: 18,
-    fontWeight: "500",
-    lineHeight: 22,
-  },
-  button: {
-    backgroundColor: "#FF473A",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    height: 42,
-    width: 250,
-    justifyContent: "center",
-    marginVertical: 10,
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 12,
-    lineHeight: 15,
-    textAlign: "center",
-  },
-  disclaimerText: {
-    color: "white",
-    width: 250,
-    paddingHorizontal: 10,
-  },
-});
