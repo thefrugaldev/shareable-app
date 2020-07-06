@@ -1,11 +1,11 @@
 import React from "react";
-import { Text, View, FlatList, StyleSheet } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
+import { Text, StyleSheet } from "react-native";
 
 import ListItemModel from "../components/list-item";
 import ListHeader from "../components/list-header";
-import { useNavigationState } from "@react-navigation/native";
 
-const CreateListScreen = () => {
+const List = () => {
   const staticList = [
     {
       name: "Celery",
@@ -39,10 +39,6 @@ const CreateListScreen = () => {
     },
   ];
 
-  const nav = useNavigationState((state) => {
-    console.log(state);
-  });
-
   return (
     <FlatList
       data={staticList}
@@ -57,7 +53,7 @@ const CreateListScreen = () => {
   );
 };
 
-export default CreateListScreen;
+export default List;
 
 const styles = StyleSheet.create({
   list: {},

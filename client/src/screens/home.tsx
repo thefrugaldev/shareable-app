@@ -7,11 +7,7 @@ import {
   ImageSourcePropType,
   TouchableOpacity,
 } from "react-native";
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from "react-navigation";
+import { NavigationScreenProp } from "react-navigation";
 
 import banner from "../../assets/home-screen-banner.png";
 import { Screens } from ".";

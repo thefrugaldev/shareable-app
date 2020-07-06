@@ -1,11 +1,10 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import "react-native-gesture-handler";
-import { NavigationContainer, StackActions } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import HomeScreen from "./src/screens/home";
-import CreateListScreen from "./src/screens/create-list";
+import ManageListScreen from "./src/screens/manage-list";
 import { Screens } from "./src/screens";
 import { StyleSheet } from "react-native";
 import HamburgerMenu from "./src/components/hamburger-menu";
@@ -26,7 +25,7 @@ export default function App() {
         />
         <Stack.Screen
           name={`${Screens.CreateList}`}
-          component={CreateListScreen}
+          component={ManageListScreen}
           options={{
             headerTintColor: "#ff473a",
             headerLeft: (props) => null,
