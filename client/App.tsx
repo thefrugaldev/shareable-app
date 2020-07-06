@@ -2,12 +2,14 @@ import React from "react";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { StyleSheet } from "react-native";
 
 import HomeScreen from "./src/screens/home";
 import ManageListScreen from "./src/screens/manage-list";
 import { Screens } from "./src/screens";
-import { StyleSheet } from "react-native";
 import HamburgerMenu from "./src/components/hamburger-menu";
+import Login from "./src/screens/login";
+import Register from "./src/screens/register";
 
 const Stack = createStackNavigator();
 
@@ -32,6 +34,8 @@ export default function App() {
             headerRight: (props) => <HamburgerMenu />,
           }}
         />
+        <Stack.Screen name={`${Screens.Login}`} component={Login} />
+        <Stack.Screen name={`${Screens.Register}`} component={Register} />
       </Stack.Navigator>
     </NavigationContainer>
   );
