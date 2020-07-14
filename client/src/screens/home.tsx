@@ -11,6 +11,7 @@ import { NavigationScreenProp } from "react-navigation";
 
 import banner from "../../assets/home-screen-banner.png";
 import { Screens } from ".";
+import { GlobalStyles } from "../styles/global";
 
 const HomeScreen: React.FC<{
   navigation: NavigationScreenProp<any, any>;
@@ -22,15 +23,15 @@ const HomeScreen: React.FC<{
       <Image source={banner as ImageSourcePropType} />
       <TouchableOpacity
         onPress={() => navigation.navigate(`${Screens.CreateList}`)}
-        style={styles.button}
+        style={GlobalStyles.button}
       >
-        <Text style={styles.buttonText}>Create a list</Text>
+        <Text style={GlobalStyles.buttonText}>Create a list</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => alert("Hello, world!")}
-        style={styles.button}
+        style={GlobalStyles.button}
       >
-        <Text style={styles.buttonText}>Add notes</Text>
+        <Text style={GlobalStyles.buttonText}>Add notes</Text>
       </TouchableOpacity>
       <Text style={styles.disclaimerText}>
         Select one of the buttons above and start creating and sharing!
@@ -67,27 +68,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
     lineHeight: 22,
-  },
-  button: {
-    backgroundColor: "#FF473A",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    height: 42,
-    width: 250,
-    justifyContent: "center",
-    marginVertical: 10,
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 12,
-    lineHeight: 15,
-    textAlign: "center",
   },
   disclaimerText: {
     color: "white",

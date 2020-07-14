@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native-gesture-handler";
-import { Text, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
-import ListItemModel from "../components/list-item";
+import ListItem from "../components/list-item";
 import ListHeader from "../components/list-header";
+import { db } from "../lib/firebase";
+import ListItemModel, { NewListItem } from "../models/ListItem";
 
 const List = () => {
   const staticList = [
@@ -39,17 +41,55 @@ const List = () => {
     },
   ];
 
+  const listItemsRef = db.ref();
+  const [listItems, setListItems] = useState<ListItemModel[]>();
+  const [newListItem, setNewListItem] = useState(NewListItem);
+
+  useEffect(() => {
+    listItemsRef.on("value", (snapShot) => {
+      let items: ListItemModel[] = [];
+      snapShot.forEach((child) => {
+        items.push({
+          id: child.key, // TODO: use GUID instead
+          name: child.val().name,
+          quantity: child.val().quantity,
+          imageSource: child.val().imageSource,
+        });
+      });
+
+      setListItems(items);
+    });
+  }, []);
+
+  const handleUpdate = (item: ListItemModel) => {
+    console.log(`Updating item: `, item);
+
+    item.id
+      ? listItemsRef.child(item.id).update(item)
+      : listItemsRef.push(item);
+
+    // setNewListItem(NewListItem);
+  };
+
   return (
-    <FlatList
-      data={staticList}
-      renderItem={({ item }) => <ListItemModel item={item} />}
-      keyExtractor={(item) => item.id}
-      contentContainerStyle={styles.listContainer}
-      style={styles.list}
-      ListHeaderComponent={ListHeader}
-    >
-      <Text>This is part of a list</Text>
-    </FlatList>
+    <>
+      <FlatList
+        data={listItems}
+        // extraData={listItems}
+        renderItem={({ item }) => (
+          <ListItem onUpdate={handleUpdate} item={item} />
+        )}
+        keyExtractor={(item) => item.id || ""} // TODO: refactor
+        contentContainerStyle={styles.listContainer}
+        style={styles.list}
+        ListHeaderComponent={ListHeader}
+        ListFooterComponent={
+          <>
+            <ListItem onUpdate={handleUpdate} item={newListItem} />
+          </>
+        }
+      ></FlatList>
+    </>
   );
 };
 
